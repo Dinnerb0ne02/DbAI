@@ -12,13 +12,7 @@ DbAI is an artificial neural network (ANN) framework built on the **Transformer 
 - **Agent Mechanism**: Integrates configurable agent modules to support dynamic adjustment of model behavior (e.g., inference strategies, parameter update logic).  
 - **Compatibility**: Compatible with the PyTorch ecosystem and seamlessly integrates with mainstream deep learning toolchains (e.g., TorchScript, Datasets).  
 
-## Installation Guide  
-### Dependencies  
-- Python ≥ 3.8  
-- PyTorch ≥ 2.0  
-- TorchText (optional, for NLP tasks)  
-
-### Installation Steps  
+## Installation 
 ```bash
 # Clone the repository
 git clone https://github.com/Dinnerb0ne02/DbAI.git
