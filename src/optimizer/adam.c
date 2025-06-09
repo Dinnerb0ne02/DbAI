@@ -24,11 +24,11 @@ Adam* adam_init(size_t size, float learning_rate, float beta1, float beta2, floa
         return NULL;
     }
 
-    optimizer->size = size; // 设置权重数组的大小
+    optimizer->weight_size = size; // 设置权重数组的大小
     optimizer->t = 0;
     optimizer->learning_rate = learning_rate;
-    optimizer->beta1 = beta1;
-    optimizer->beta2 = beta2;
+    optimizer->decline_beta1 = beta1;
+    optimizer->decline_beta2 = beta2;
     optimizer->epsilon = epsilon;
 
     return optimizer;
@@ -36,15 +36,15 @@ Adam* adam_init(size_t size, float learning_rate, float beta1, float beta2, floa
 
 // 重置优化器的状态
 void adam_reset_state(Adam* optimizer) {
-    memset(optimizer->m, 0, optimizer->size * sizeof(float));
-    memset(optimizer->v, 0, optimizer->size * sizeof(float));
+    memset(optimizer->m, 0, optimizer->weight_size * sizeof(float));
+    memset(optimizer->v, 0, optimizer->weight_size * sizeof(float));
     optimizer->t = 0;
 }
 
 // Adam更新公式
-void adam_update(Adam* optimizer, float* weights, const float* gradients, size_t size) {
-    const float beta1 = optimizer->beta1;
-    const float beta2 = optimizer->beta2;
+void adam_update(Adam* optimizer, float* weights, const float* gradients, size_t weight_size) {
+    const float beta1 = optimizer->decline_beta1;
+    const float beta2 = optimizer->decline_beta2;
     const float epsilon = optimizer->epsilon;
     float* m = optimizer->m;
     float* v = optimizer->v;
@@ -53,13 +53,13 @@ void adam_update(Adam* optimizer, float* weights, const float* gradients, size_t
 
     // 初始化第一个时间步
     if (t == 0) {
-        for (size_t i = 0; i < size; ++i) {
+        for (size_t i = 0; i < weight_size; ++i) {
             m[i] = gradients[i];
             v[i] = gradients[i] * gradients[i];
         }
     } else {
         // Adam参数更新规则
-        for (size_t i = 0; i < size; ++i) {
+        for (size_t i = 0; i < weight_size; ++i) {
             // 更新动量估计
             m[i] = beta1 * m[i] + (1 - beta1) * gradients[i];
             // 更新未中心化的方差估计

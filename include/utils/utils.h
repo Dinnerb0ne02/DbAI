@@ -24,7 +24,7 @@ void gradient_check(
 );
 // 梯度检查函数
 
-void shuffle_data(DataLoader* loader);
+// void shuffle_data(DataLoader* loader); // duplicate definition
 
 int get_batch(
     DataLoader* loader, 

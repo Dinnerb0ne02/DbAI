@@ -75,7 +75,7 @@ int main() {
 
     // Training loop
     for (size_t epoch = 0; epoch < EPOCHS; ++epoch) {
-        printf("Epoch %zu/%zu\n", epoch + 1, EPOCHS);
+        printf("Epoch %zu/%zu\n", epoch + 1, (size_t)EPOCHS);
         for (size_t batch_index = 0; batch_index < NUM_SAMPLES / BATCH_SIZE; ++batch_index) {
             float* batch_inputs;
             float* batch_labels;
@@ -102,7 +102,11 @@ int main() {
             // Cleanup
             free(outputs);
 
-            printf("Batch %zu/%zu, Loss: %f\n", batch_index + 1, NUM_SAMPLES / BATCH_SIZE, loss);
+            printf("Batch %zu/%zu, Loss: %f\n", 
+                batch_index + 1, 
+                (size_t)(NUM_SAMPLES / BATCH_SIZE),  // Add cast here
+                loss
+            );
         }
     }
 

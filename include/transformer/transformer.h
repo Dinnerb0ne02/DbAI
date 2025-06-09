@@ -5,9 +5,6 @@
 
 #include <network/layer.h>
 
-// 前向声明Layer类型（如果尚未定义）
-typedef struct Layer Layer;
-
 typedef struct {
     Layer* self_attention;
     Layer* feed_forward;
@@ -25,19 +22,24 @@ typedef struct {
 
 Transformer* transformer_init(
     size_t num_layers, 
-    size_t d_model, 
-    size_t num_heads, 
+    size_t d_model,
+    size_t num_heads,
     size_t dff
 );
 
-void transformer_free(Transformer* transformer);
-
 void transformer_forward(
-    const Transformer* transformer, 
-    const float* input, 
+    Transformer* transformer, 
+    const float* input,
     float* output
 ); // 向前传播函数
 
 void add_layer(Transformer* transformer, Layer* layer); // 辅助函数声明
 
+void transformer_free(Transformer* transformer);
+
+void layer_forward(
+    Layer* layer, 
+    const float* input, 
+    float* output
+); // 辅助函数声明
 #endif

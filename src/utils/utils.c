@@ -55,17 +55,6 @@ void shuffle_data(DataLoader* loader) {
     }
 }
 
-// 实现数据洗牌逻辑
-void shuffle_data(DataLoader* loader) {
-    size_t n = loader->num_samples;
-    for (size_t i = 0; i < n - 1; ++i) {
-        size_t j = i + rand() / (RAND_MAX / (n - i) + 1);
-        float temp = loader->features[i];
-        loader->features[i] = loader->features[j];
-        loader->features[j] = temp;
-    }
-}
-
 // 实现获取批次数据逻辑
 int get_batch(
     DataLoader* loader, 

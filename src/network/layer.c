@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 #include <network/layer.h>
+#include <transformer/transformer.h>
 
 // 2024-07-31 18:13 improvement 1: 用 calloc() 替代 malloc() 初始化, 为 0
 // 2024-07-31 18:13 improvement 2: 用 Xavier 初始化方法, 初始化权重
@@ -52,4 +54,9 @@ void forward_pass(Layer* layer, const float* inputs, float* outputs) {
         }
         outputs[i] += layer->biases[i];
     }
+}
+
+// 前向传播接口函数
+void layer_forward(Layer* layer, const float* input, float* output) {
+    forward_pass(layer, input, output);
 }

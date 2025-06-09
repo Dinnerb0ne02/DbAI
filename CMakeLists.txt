@@ -36,7 +36,7 @@ file(GLOB_RECURSE ALL_SRC "${PROJECT_SRC_DIR}/*/*.c")
 # file(GLOB_RECURSE LOSS_SOURCES ${SRC_DIR}/loss/*.c)
 
 # 编译选项
-add_compile_options(-static -std=${CMAKE_C_STANDARD} -Wall -O0)
+add_compile_options(-static -std=c17 -Wall -O0)
 
 add_executable(DbAI
     ${PROJECT_SOURCES}
@@ -64,6 +64,8 @@ message(STATUS "Project: ${PROJECT_NAME} version ${PROJECT_VERSION}")
 message(STATUS "Description: ${PROJECT_DESCRIPTION}")
 message(STATUS "Author: ${AUTHOR}")
 message(STATUS "Copyright: ${COPYRIGHT}")
+
+message(STATUS "Source files: ${PROJECT_SOURCES}")
 
 
 enable_testing()
