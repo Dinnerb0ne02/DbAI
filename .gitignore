@@ -9,7 +9,7 @@
 # compile_commands.json
 # CTestTestfile.cmake
 # _deps
-# CMakeUserPresets.json
+CMakeUserPresets.json
 
 todo.md
 tree.txt
